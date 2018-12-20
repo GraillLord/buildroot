@@ -55,10 +55,15 @@ endif
 
 endif
 
+# There is no "--enable-slirp"
+ifeq ($(BR2_PACKAGE_QEMU_SLIRP),)
+QEMU_OPTS += --disable-slirp
+endif
+
 ifeq ($(BR2_PACKAGE_QEMU_SDL),y)
 QEMU_OPTS += --enable-sdl
-QEMU_DEPENDENCIES += sdl
-QEMU_VARS += SDL_CONFIG=$(BR2_STAGING_DIR)/usr/bin/sdl-config
+QEMU_DEPENDENCIES += sdl2
+QEMU_VARS += SDL2_CONFIG=$(BR2_STAGING_DIR)/usr/bin/sdl2-config
 else
 QEMU_OPTS += --disable-sdl
 endif
@@ -101,7 +106,6 @@ define QEMU_CONFIGURE_CMDS
 			--enable-vhost-net \
 			--disable-bsd-user \
 			--disable-xen \
-			--disable-slirp \
 			--disable-vnc \
 			--disable-virtfs \
 			--disable-brlapi \
@@ -153,7 +157,6 @@ HOST_QEMU_DEPENDENCIES = host-pkgconf host-python host-zlib host-libglib2 host-p
 #       -------         ----
 #       arm             arm
 #       armeb           armeb
-#       bfin            not supported
 #       i486            i386
 #       i586            i386
 #       i686            i386

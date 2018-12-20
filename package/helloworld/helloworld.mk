@@ -3,7 +3,7 @@
 # basic building rules
 #
 HELLOWORLD_VERSION = 1.1
-HELLOWORLD_SOURCE = helloworld-$(HELLOWORLD_VERSION).tar.gz
+HELLOWORLD_SOURCE = helloworld.tgz
 HELLOWORLD_SITE = http://helloworld.com/dl/$(HELLOWORLD_SOURCE)
 
 HELLOWORLD_INSTALL_STAGING = YES
